@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Music Playlist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Playlist Area -->
+        <div id="playlist-area">
+            <h2>Playlist</h2>
+            <table id="playlist-table">
+                <!-- Table headers -->
+                <!-- Playlist songs will be added here -->
+            </table>
+        </div>
+        
+        <!-- Input Area -->
+        <div class="input-area">
+            <label for="song-title">Enter Song Title:</label>
+            <input type="text" id="song-title" />
+            <button id="submit_button">Submit</button>
+        </div>
+        
+        <!-- Search Results Area -->
+        <div id="search-results-area">
+            <table id="search-results-table">
+                <tr>
+                    <th></th> <!-- For add buttons -->
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Artwork</th>
+                </tr>
+                <!-- Search results rows will go here -->
+            </table>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
