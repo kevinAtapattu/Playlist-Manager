@@ -38,6 +38,18 @@ function searchSongs() {
             // Add the new row to the table's HTML.
             searchResultsTable.insertAdjacentHTML('beforeend', newRow);
           });
+
+          let addButtons = document.getElementsByClassName('add-song');
+            for (let btn of addButtons) {
+              btn.addEventListener('click', function() {
+                let songRow = this.parentNode.parentNode; // The <tr> element for the song
+                let trackName = songRow.querySelector('td:nth-child(2)').textContent;
+                let artistName = songRow.querySelector('td:nth-child(3)').textContent;
+                let artworkUrl = songRow.querySelector('td:nth-child(4) img').src;
+
+                addToPlaylist(trackName, artistName, artworkUrl);
+              });
+            }
         } else {
           let noResultsRow = `<tr><td colspan="4">No songs found. Try another search.</td></tr>`;
           searchResultsTable.insertAdjacentHTML('beforeend', noResultsRow);
@@ -49,6 +61,27 @@ function searchSongs() {
   };
   xhr.open('GET', `/searchSongs?title=${encodeURIComponent(title)}`, true);
   xhr.send();
+}
+
+function addToPlaylist(trackName, artistName, artworkUrl) {
+  let playlistTable = document.getElementById('playlist-table');
+
+  // Create a new row with the song information
+  let newRow = `
+    <tr class="playlist-row">
+      <td>
+        <button class="remove-song">-</button>
+        <button class="move-up">🔼</button>
+        <button class="move-down">🔽</button>
+      </td>
+      <td>${trackName}</td>
+      <td>${artistName}</td>
+      <td><img src="${artworkUrl}" alt="${trackName} Artwork"></td>
+    </tr>
+  `;
+
+  // Add the new row to the playlist table
+  playlistTable.insertAdjacentHTML('beforeend', newRow);
 }
 
 const ENTER=13

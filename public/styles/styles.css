@@ -110,12 +110,12 @@ display: block; /* Makes the elements block-level, enabling the auto margins to 
     text-align: center; /* Center the text inside table headers and cells */
 }
 
-
 #search-results-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px; /* Adjust as needed */
-}
+    width: 60%; /* Adjust the percentage as needed */
+    max-width: 600px; /* Maximum width of the table */
+    margin: 20px auto; /* Center the table on the page */
+    border-collapse: collapse; /* Optional: removes gaps between cells */
+  }
 
 #search-results-table th,
 #search-results-table td {
@@ -150,4 +150,63 @@ display: block; /* Makes the elements block-level, enabling the auto margins to 
 .search-result-row img {
     width: 50px; /* Set image size */
     height: 50px; /* Set image size */
+}
+
+#playlist-table {
+    width: 45%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+#playlist-table th,
+#playlist-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+button {
+    border: none; /* Removes the border */
+    background-color: transparent; /* Makes the background transparent */
+    cursor: pointer; /* Changes the cursor to indicate it's clickable */
+    color: blue; /* Changes the text color to blue */
+}
+
+/* Style for the minus button to match the plus button */
+.minus-button {
+    font-size: 24px; /* Increase the size of the minus sign */
+    font-weight: bold; /* Make the minus sign bolder */
+    color: blue; /* Sets the color to blue */
+    /* ... other styles ... */
+  }
+
+/* Style for the up and down arrow buttons */
+.up-arrow-button, .down-arrow-button {
+    color: blue; /* Sets the arrow color to blue */
+    /* Add any other styles for these buttons here */
+}
+
+/* When using emoji or text for icons */
+.minus-button::before {
+    content: '−'; /* Unicode for the minus sign */
+    color: blue; /* Blue color for the minus sign */
+    font-size: 24px;
+}
+
+/* Adjusting the styles if using an icon font like FontAwesome */
+.up-arrow-button::before {
+    content: '\f106'; /* FontAwesome unicode for up arrow */
+    font-family: 'FontAwesome'; /* Adjust font-family as necessary */
+    color: blue; /* Blue color for the arrow */
+}
+
+.down-arrow-button::before {
+    content: '\f107'; /* FontAwesome unicode for down arrow */
+    font-family: 'FontAwesome'; /* Adjust font-family as necessary */
+    color: blue; /* Blue color for the arrow */
+}
+
+/* Style for the playlist rows */
+.playlist-row img {
+    width: 50px; /* Adjust to your preference */
+    height: 50px; /* Adjust to your preference */
 }
