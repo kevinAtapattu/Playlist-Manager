@@ -67,21 +67,46 @@ function addToPlaylist(trackName, artistName, artworkUrl) {
   let playlistTable = document.getElementById('playlist-table');
 
   // Create a new row with the song information
-  let newRow = `
-    <tr class="playlist-row">
-      <td>
-        <button class="remove-song">-</button>
-        <button class="move-up">🔼</button>
-        <button class="move-down">🔽</button>
-      </td>
-      <td>${trackName}</td>
-      <td>${artistName}</td>
-      <td><img src="${artworkUrl}" alt="${trackName} Artwork"></td>
-    </tr>
+  let newRow = document.createElement('tr');
+  newRow.className = 'playlist-row';
+  newRow.innerHTML = `
+    <td>
+      <button class="remove-song">−</button>
+      <button class="move-up">🔼</button>
+      <button class="move-down">🔽</button>
+    </td>
+    <td>${trackName}</td>
+    <td>${artistName}</td>
+    <td><img src="${artworkUrl}" alt="${trackName} Artwork" style="width: 50px; height: 50px;"></td>
   `;
 
   // Add the new row to the playlist table
-  playlistTable.insertAdjacentHTML('beforeend', newRow);
+  playlistTable.appendChild(newRow);
+
+  // Add functionality for the remove button
+  let removeButton = newRow.querySelector('.remove-song');
+  removeButton.addEventListener('click', function() {
+    newRow.remove();
+  });
+
+  // Add functionality for the move up button
+  let moveUpButton = newRow.querySelector('.move-up');
+  moveUpButton.addEventListener('click', function() {
+    let previousRow = newRow.previousElementSibling;
+    if (previousRow && previousRow.tagName === 'TR') {
+      playlistTable.insertBefore(newRow, previousRow);
+    }
+  });
+
+  // Add functionality for the move down button
+  let moveDownButton = newRow.querySelector('.move-down');
+  moveDownButton.addEventListener('click', function() {
+    let nextRow = newRow.nextElementSibling;
+    if (nextRow) {
+      // The corrected logic for moving down
+      playlistTable.insertBefore(nextRow, newRow);
+    }
+  });
 }
 
 const ENTER=13
