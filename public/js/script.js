@@ -6,7 +6,7 @@ function searchSongs() {
     return;
   }
 
-  // Update search heading to display the song being searched
+  // updating heading to display search results matching title searched
   let searchHeading = document.getElementById('search-heading');
   if (searchHeading) {
     searchHeading.textContent = `Songs matching: ${title}`;

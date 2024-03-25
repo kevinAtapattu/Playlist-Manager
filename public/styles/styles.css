@@ -80,93 +80,88 @@ input {
     margin-bottom: 10px;
 }
 .input-area {
-text-align: center; /* Centers inline elements within the div */
+text-align: center; /* centering elements within the div */
 }
 
 .input-area label,
 .input-area input,
 .input-area button {
-margin: 0 auto; /* Centers block elements within the div if they have a width */
-display: block; /* Makes the elements block-level, enabling the auto margins to work */
+margin: 0 auto; 
+display: block; 
 }
 
 #song-title {
-    width: 25%; /* Sets a specific width to the input field */
-/* Additional styles for the input field can be added here */
+    width: 25%; /* sets specific width to the input field */
 }
 
 #submit_button {
-    margin-top: 10px; /* Adds space between the input field and the button */
-/* Additional styles for the button can be added here */
+    margin-top: 10px; /* adds space between the input field and the button */
 }
 
 #song-info {
-    text-align: center; /* Center the inline content */
-    margin: 0 auto; /* Center the block itself if it has a set width */
-    max-width: 800px; /* Adjust this value to suit your layout */
+    text-align: center;
+    margin: 0 auto; 
+    max-width: 800px; 
 }
 
 .song {
-    display: inline-block; /* This will make it responsive to text-align center */
-/* Any additional styles for the song entries */
+    display: inline-block; 
 }
 
 .song img {
-    display: block; /* Centers the images within their inline-block containers */
-    margin: 0 auto; /* Center the image within the .song div */
+    display: block; /* centering images within their inline-block containers */
+    margin: 0 auto; /* centering image within the .song div */
 }
 
-/* If your song details are in a table */
 #song-info table {
-    width: 100%; /* Set the table width to occupy the container width */
-    margin: 0 auto; /* Center the table */
+    width: 100%; 
+    margin: 0 auto; 
 }
 
 #song-info th,
 #song-info td {
-    text-align: center; /* Center the text inside table headers and cells */
+    text-align: center; 
 }
 
 #search-results-table {
-    width: 60%; /* Adjust the percentage as needed */
-    max-width: 600px; /* Maximum width of the table */
-    margin: 20px auto; /* Center the table on the page */
-    border-collapse: collapse; /* Optional: removes gaps between cells */
+    width: 60%; 
+    max-width: 600px; 
+    margin: 20px auto; 
+    border-collapse: collapse; 
   }
 
 #search-results-table th,
 #search-results-table td {
-    border: 1px solid #ddd; /* Light grey border */
+    border: 1px solid #ddd; 
     text-align: left;
-    padding: 8px; /* Adjust as needed */
+    padding: 8px; 
 }
 
 #search-results-table tr:nth-child(even) {
-    background-color: #f9f9f9; /* Zebra striping for rows */
+    background-color: #f9f9f9; 
 }
 
 #search-results-table tr:hover {
-    background-color: #ddd; /* Highlight on hover */
+    background-color: #ddd; 
 }
 
 #search-results-table th {
-    background-color: #f4f4f4; /* Light grey background for headers */
+    background-color: #f4f4f4; 
     color: black;
 }
 
 .add-song {
-    /* Style the add button */
-    font-size: 24px; /* Larger + sign */
-    line-height: 24px; /* Aligns text to the center vertically */
-    color: blue; /* Blue color */
-    border: none; /* No border */
-    background: none; /* Transparent background */
-    cursor: pointer; /* Cursor to pointer to indicate it's clickable */
+    font-size: 24px; 
+    line-height: 24px; 
+    color: blue; 
+    border: none; 
+    background: none; 
+    cursor: pointer;
 }
 
 .search-result-row img {
-    width: 50px; /* Set image size */
-    height: 50px; /* Set image size */
+    width: 50px; 
+    height: 50px; 
 }
 
 #playlist-table {
@@ -182,48 +177,42 @@ display: block; /* Makes the elements block-level, enabling the auto margins to 
 }
 
 button {
-    border: none; /* Removes the border */
-    background-color: transparent; /* Makes the background transparent */
-    cursor: pointer; /* Changes the cursor to indicate it's clickable */
-    color: blue; /* Changes the text color to blue */
+    border: none; 
+    background-color: transparent; 
+    cursor: pointer;
+    color: blue; 
 }
 
-/* Style for the minus button to match the plus button */
 .minus-button {
-    font-size: 24px; /* Increase the size of the minus sign */
-    font-weight: bold; /* Make the minus sign bolder */
-    color: blue; /* Sets the color to blue */
-    /* ... other styles ... */
+    font-size: 24px; 
+    font-weight: bold; 
+    color: blue; 
   }
 
-/* Style for the up and down arrow buttons */
 .up-arrow-button, .down-arrow-button {
-    color: blue; /* Sets the arrow color to blue */
-    /* Add any other styles for these buttons here */
+    color: blue; 
+    
 }
 
-/* When using emoji or text for icons */
 .minus-button::before {
-    content: '−'; /* Unicode for the minus sign */
-    color: blue; /* Blue color for the minus sign */
+    content: '−'; 
+    color: blue; 
     font-size: 24px;
 }
 
-/* Adjusting the styles if using an icon font like FontAwesome */
 .up-arrow-button::before {
-    content: '\f106'; /* FontAwesome unicode for up arrow */
-    font-family: 'FontAwesome'; /* Adjust font-family as necessary */
-    color: blue; /* Blue color for the arrow */
+    content: '\f106'; 
+    font-family: 'FontAwesome'; 
+    color: blue; 
 }
 
 .down-arrow-button::before {
-    content: '\f107'; /* FontAwesome unicode for down arrow */
-    font-family: 'FontAwesome'; /* Adjust font-family as necessary */
-    color: blue; /* Blue color for the arrow */
+    content: '\f107'; 
+    font-family: 'FontAwesome'; 
+    color: blue; 
 }
 
-/* Style for the playlist rows */
 .playlist-row img {
-    width: 50px; /* Adjust to your preference */
-    height: 50px; /* Adjust to your preference */
+    width: 50px; 
+    height: 50px; 
 }
