@@ -6,6 +6,12 @@ function searchSongs() {
     return;
   }
 
+  // Update search heading to display the song being searched
+  let searchHeading = document.getElementById('search-heading');
+  if (searchHeading) {
+    searchHeading.textContent = `Songs matching: ${title}`;
+  }
+
   // clearing other prev search result
   let searchResultsTable = document.getElementById('search-results-table');
   if (searchResultsTable) {
@@ -105,7 +111,7 @@ function addToPlaylist(trackName, artistName, artworkUrl) {
     }
     savePlaylist();
   });
-  
+
   savePlaylist(); // saving current playlist so it can be accessed again
 }
 
