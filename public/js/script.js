@@ -1,3 +1,4 @@
+// function to search songs
 function searchSongs() {
   let title = document.getElementById('song-title').value.trim();
   if (title === '') {
@@ -5,10 +6,10 @@ function searchSongs() {
     return;
   }
 
-  // Clear the previous search results.
+  // clearing other prev search result
   let searchResultsTable = document.getElementById('search-results-table');
   if (searchResultsTable) {
-    // Clear all rows except the header row.
+    // clearing all rows except the header row.
     searchResultsTable.innerHTML = searchResultsTable.rows[0].outerHTML;
   }
 
@@ -18,13 +19,7 @@ function searchSongs() {
       if (xhr.status === 200) {
         let response = JSON.parse(xhr.responseText);
 
-        // Update the search heading with the current song title being searched.
-        let searchHeading = document.getElementById('search-heading');
-        if (searchHeading) {
-          searchHeading.textContent = `Search Results: ${title}`;
-        }
-
-        // Check if there are results and append them to the table.
+        // checking if results exist, adding them if so
         if (response.results && response.results.length > 0) {
           response.results.forEach((song, index) => {
             let newRow = `
@@ -35,7 +30,7 @@ function searchSongs() {
                 <td><img src="${song.artworkUrl60}" alt="${song.trackName} Artwork"></td>
               </tr>
             `;
-            // Add the new row to the table's HTML.
+            // adding new row 
             searchResultsTable.insertAdjacentHTML('beforeend', newRow);
           });
 
@@ -66,7 +61,7 @@ function searchSongs() {
 function addToPlaylist(trackName, artistName, artworkUrl) {
   let playlistTable = document.getElementById('playlist-table');
 
-  // Create a new row with the song information
+  // creating new row to playlist with song info
   let newRow = document.createElement('tr');
   newRow.className = 'playlist-row';
   newRow.innerHTML = `
@@ -80,33 +75,58 @@ function addToPlaylist(trackName, artistName, artworkUrl) {
     <td><img src="${artworkUrl}" alt="${trackName} Artwork" style="width: 50px; height: 50px;"></td>
   `;
 
-  // Add the new row to the playlist table
+  // add button
   playlistTable.appendChild(newRow);
 
-  // Add functionality for the remove button
+  // remove button
   let removeButton = newRow.querySelector('.remove-song');
   removeButton.addEventListener('click', function() {
     newRow.remove();
+    savePlaylist();
   });
 
-  // Add functionality for the move up button
+  // move up button
   let moveUpButton = newRow.querySelector('.move-up');
   moveUpButton.addEventListener('click', function() {
     let previousRow = newRow.previousElementSibling;
     if (previousRow && previousRow.tagName === 'TR') {
       playlistTable.insertBefore(newRow, previousRow);
     }
+    savePlaylist();
   });
 
-  // Add functionality for the move down button
+  // move down button
   let moveDownButton = newRow.querySelector('.move-down');
   moveDownButton.addEventListener('click', function() {
     let nextRow = newRow.nextElementSibling;
     if (nextRow) {
-      // The corrected logic for moving down
+      // moving row down
       playlistTable.insertBefore(nextRow, newRow);
     }
+    savePlaylist();
   });
+  
+  savePlaylist(); // saving current playlist so it can be accessed again
+}
+
+function savePlaylist() {
+  let playlist = [];
+  document.querySelectorAll('#playlist-table .playlist-row').forEach(row => {
+    const trackName = row.cells[1].textContent;
+    const artistName = row.cells[2].textContent;
+    const artworkUrl = row.cells[3].querySelector('img').src;
+    playlist.push({ trackName, artistName, artworkUrl });
+  });
+  localStorage.setItem('playlist', JSON.stringify(playlist));
+}
+
+function loadPlaylist() {
+  const playlist = JSON.parse(localStorage.getItem('playlist'));
+  if (playlist) {
+    playlist.forEach(song => {
+      addToPlaylist(song.trackName, song.artistName, song.artworkUrl);
+    });
+  }
 }
 
 const ENTER=13
@@ -119,8 +139,9 @@ event.preventDefault()
 }
 
 
-// Update event listeners
+// updating event listeners
 document.addEventListener('DOMContentLoaded', function() {
+  loadPlaylist();
   document.getElementById('submit_button').addEventListener('click', searchSongs);
   document.addEventListener('keyup', handleKeyUp);
 });
