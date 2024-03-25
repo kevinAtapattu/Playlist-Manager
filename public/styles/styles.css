@@ -48,6 +48,23 @@ button {
     background-color: lightskyblue;
     font-family: 'Roboto', sans-serif;
 }
+/*styling submit button for better appearance */
+#submit_button {
+    background-color: lightskyblue; 
+    color: white; 
+    border: none; 
+    border-radius: 20px;
+    padding: 10px 20px; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    cursor: pointer; 
+    outline: none; 
+    transition: background-color 0.3s ease; 
+}
+  
+#submit_button:hover {
+    background-color: darkblue; /* slightly darker blue on hover */
+}
 
 input {
     padding-bottom: 7px;

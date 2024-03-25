@@ -16,6 +16,7 @@ http://localhost:3000/weather?city=Ottawa
 to just set JSON response. (Note it is helpful to add a JSON formatter extension, like JSON Formatter, to your Chrome browser for viewing just JSON data.)
 */
 const express = require('express') //express framework
+const path = require('path');
 const http = require('http')
 const PORT = process.env.PORT || 3000 //allow environment variable to possible set PORT
 
@@ -28,16 +29,13 @@ const app = express()
 
 //Middleware
 app.use(express.static(__dirname + '/public')) //static server
+const indexFilePath = path.join(__dirname, 'public', 'views', 'index.html');
 
 //Routes
-app.get('/', (request, response) => {
-  response.sendFile(__dirname + '/views/index.html')
-})
-
-app.get('/searchSongs', (request, response) => {
+app.get(['/searchSongs', '/mytunes.html', '/mytunes', '/index.html', '/'], (request, response) => {
   let title = request.query.title;
   if (!title) {
-    response.json({message: 'Please enter a song title'});
+    response.sendFile(__dirname + '/views/index.html')
     return;
   }
 
@@ -58,40 +56,6 @@ app.get('/searchSongs', (request, response) => {
     });
   }).end();
 });
-
-app.get('/songs', (request, response) => {
-  let title = request.query.title;
-  if (!title) {
-    response.status(400).send('Song title is required');
-    return;
-  }
-  
-  // reaplace spaces with "+" for the iTunes API request
-  let formattedTitle = title.replace(/\s+/g, '+');
-
-  let options = {
-    host: 'itunes.apple.com',
-    path: `/search?term=${formattedTitle}&entity=musicTrack&limit=3`,
-  };
-
-  // request to iTunes API
-  http.request(options, function(apiResponse) {
-    let songData = '';
-    apiResponse.on('data', function(chunk) {
-      songData += chunk;
-    });
-    apiResponse.on('end', function() {
-      // Parse and send the song data
-      try {
-        let parsedData = JSON.parse(songData);
-        response.json(parsedData);
-      } catch (error) {
-        response.status(500).send('Error parsing response from iTunes API');
-      }
-    });
-  }).end();
-});
-
 
 //start server
 app.listen(PORT, err => {
