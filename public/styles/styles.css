@@ -1,5 +1,6 @@
 html {
     font-family: 'Roboto', sans-serif;
+    color: white;
 }
 
 .container {
@@ -50,7 +51,7 @@ button {
 }
 /*styling submit button for better appearance */
 #submit_button {
-    background-color: lightskyblue; 
+    background-color: #04AA6D; 
     color: white; 
     border: none; 
     border-radius: 20px;
@@ -63,7 +64,7 @@ button {
 }
   
 #submit_button:hover {
-    background-color: darkblue; /* slightly darker blue on hover */
+    background-color: #037d56; /* slightly darker blue on hover */
 }
 
 input {
@@ -153,7 +154,7 @@ display: block;
 .add-song {
     font-size: 24px; 
     line-height: 24px; 
-    color: blue; 
+    color: lightskyblue; 
     border: none; 
     background: none; 
     cursor: pointer;
@@ -180,13 +181,13 @@ button {
     border: none; 
     background-color: transparent; 
     cursor: pointer;
-    color: blue; 
+    color: lightskyblue; 
 }
 
 .minus-button {
     font-size: 24px; 
     font-weight: bold; 
-    color: blue; 
+    color: lightskyblue; 
   }
 
 .up-arrow-button, .down-arrow-button {
@@ -196,23 +197,113 @@ button {
 
 .minus-button::before {
     content: '−'; 
-    color: blue; 
+    color: lightskyblueblue; 
     font-size: 24px;
 }
 
 .up-arrow-button::before {
     content: '\f106'; 
     font-family: 'FontAwesome'; 
-    color: blue; 
+    color: lightskyblue; 
 }
 
 .down-arrow-button::before {
     content: '\f107'; 
     font-family: 'FontAwesome'; 
-    color: blue; 
+    color: lightskyblue; 
 }
 
 .playlist-row img {
     width: 50px; 
     height: 50px; 
+}
+
+#playlist-table, #search-results-table {
+    color: white; /* This sets the text color to white for both tables */
+}
+
+/* LOGIN */
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; 
+}
+  
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+  
+.login-card {
+    background-color: #1e1e1e;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;  
+}
+  
+.login-card h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+  
+.input-group {
+    margin-bottom: 20px;
+}
+  
+.input-group label {
+    color: #8a8a8a;
+    display: block;
+    margin-bottom: 5px;
+}
+  
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #262626;
+    color: #fff;
+}
+  
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #04AA6D; /* Change to match the color in the image */
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+  
+.submit-btn:hover {
+    background-color: #037d56; /* A darker shade for hover effect */
+}
+
+.signup-text p,
+.signup-text a {
+  color: #8a8a8a; /* This sets the text color to white */
+  /* If the "Username" and "Password" labels have a specific color,
+     replace #ffffff with the hex color code used there. */
+}
+
+.signup-text a {
+    text-decoration: none; 
+}
+/* hover effect */
+.signup-text a:hover {
+    text-decoration: underline; /* underline on hover */
+}
+
+  
+@media (max-width: 600px) {
+    .login-card {
+      width: 90%;
+    }   
 }

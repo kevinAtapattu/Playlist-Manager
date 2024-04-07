@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="styles/styles.css"> <!-- Make sure the path to your CSS file is correct -->
+</head>
+<body>
+  <div class="login-container"> <!-- Consider renaming this class to 'auth-container' for shared styles -->
+    <div class="login-card"> <!-- Also consider renaming this class for shared styles -->
+      <h2>Sign Up</h2>
+      <form id="signup-form" action="/signup" method="POST">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <!-- Add any additional fields required for sign up -->
+        <button type="submit" class="submit-btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

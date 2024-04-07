@@ -18,12 +18,8 @@ to just set JSON response. (Note it is helpful to add a JSON formatter extension
 const express = require('express') //express framework
 const path = require('path');
 const http = require('http')
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000 //allow environment variable to possible set PORT
-
-/*YOU NEED AN APP ID KEY TO RUN THIS CODE
-  GET ONE BY SIGNING UP AT openweathermap.org
-*/
-let API_KEY = '960cc7711dcd31ab1ef9bec37db2bd09' //<== YOUR API KEY HERE
 
 const app = express()
 
@@ -31,6 +27,10 @@ const app = express()
 app.use(express.static(__dirname + '/public')) //static server
 const indexFilePath = path.join(__dirname, 'public', 'views', 'index.html');
 
+// middleware to parse the body of the POST request
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'public')));
 //Routes
 app.get(['/searchSongs', '/mytunes.html', '/mytunes', '/index.html', '/'], (request, response) => {
   let title = request.query.title;
@@ -56,6 +56,26 @@ app.get(['/searchSongs', '/mytunes.html', '/mytunes', '/index.html', '/'], (requ
     });
   }).end();
 });
+
+app.get(['/login'], (request, response) => {
+  let title = request.query.title;
+  if (!title) {
+    response.sendFile(__dirname + '/views/login.html')
+    return;
+  }
+});
+
+app.get(['/signup'], (request, response) => {
+  let title = request.query.title;
+  if (!title) {
+    response.sendFile(__dirname + '/views/signup.html')
+    return;
+  }
+});
+
+// login POST request
+
+// signup POST request
 
 //start server
 app.listen(PORT, err => {

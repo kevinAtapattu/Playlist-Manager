@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="/styles/styles.css"> <!-- Make sure the path starts with a slash if it's from the root -->
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h2>Login</h2>
+      <form id="login-form" action="/login" method="POST">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="submit-btn">Log In</button>
+      </form>
+      <div class="signup-text">
+        <p>Don't have an account? </p>
+        <a href="/signup">Sign Up</a><p> or <a href="/index.html">Log in as Guest</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

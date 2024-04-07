@@ -7,10 +7,12 @@ INSTALL INSTRUCTIONS:
 
 LAUNCH INSTRUCTIONS:
 >node server.js
+>npm install body-parser
+
 
 TESTING INSTRUCTIONS:
-http://localhost:3000/songs?title=Body+And+Soul
+http://localhost:3000/mytunes.html
+http://localhost:3000/mytunes
+http://localhost:3000/index.html
+http://localhost:3000/
 http://localhost:3000
-
-VIDEO DEMONSTRATION:
-https://youtu.be/P-U0Ufc6dyE
