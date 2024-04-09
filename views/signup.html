@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Sign Up</title>
-  <link rel="stylesheet" href="styles/styles.css"> <!-- Make sure the path to your CSS file is correct -->
+  <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-  <div class="login-container"> <!-- Consider renaming this class to 'auth-container' for shared styles -->
-    <div class="login-card"> <!-- Also consider renaming this class for shared styles -->
+  <div class="login-container"> <!-- Consider renaming this class to 'form-container' -->
+    <div class="login-card"> <!-- Consider renaming this class to 'form-card' -->
       <h2>Sign Up</h2>
-      <form id="signup-form" action="/signup" method="POST">
+      <form id="signup-form">
         <div class="input-group">
           <label for="username">Username</label>
           <input type="text" id="username" name="username" required>
@@ -18,10 +18,45 @@
           <label for="password">Password</label>
           <input type="password" id="password" name="password" required>
         </div>
-        <!-- Add any additional fields required for sign up -->
         <button type="submit" class="submit-btn">Sign Up</button>
       </form>
+      <div id="error-message" style="display: none; color: red;"></div>
+      <div class="signup-text"> <!-- You might want to rename this class to 'form-text' or similar -->
+        <p>Already have an account?</p> <a href="/login">Log In</a>
+      </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.url) {
+          window.location.href = data.url;
+        } else if (data.error) {
+          const errorDiv = document.getElementById('error-message');
+          errorDiv.textContent = data.error;
+          errorDiv.style.display = 'block';
+        }
+      })
+      .catch(error => {
+        const errorDiv = document.getElementById('error-message');
+        errorDiv.textContent = 'An error occurred during sign up.';
+        errorDiv.style.display = 'block';
+        console.error('Error:', error);
+      });
+    });
+  </script>
 </body>
 </html>

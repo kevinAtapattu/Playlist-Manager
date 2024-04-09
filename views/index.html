@@ -8,9 +8,16 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
+    <div class="user-info">
+        <span id="username-display"></span>
+        <button id="auth-button" style="display: none;"></button>
+        <div id="guest-warning" style="display: none;">WARNING: Non-members' playlists will not save.</div>
+    </div>
+
     <div class="container">
         <!-- playlist Area -->
         <div id="playlist-area">
+            <h2>My Playlist</h2>
             <table id="playlist-table">
               <tr>
                 <th>Actions</th>
@@ -20,7 +27,7 @@
               </tr>
               <!-- playlist songs here -->
             </table>
-          </div>
+        </div>
         
         <!-- input Area -->
         <div class="input-area">
@@ -31,7 +38,7 @@
         
         <!-- search results area -->
         <div id="search-results-area">
-            <h2 id="search-heading"></h2>
+            <h2 id="search-heading">Songs matching: </h2> <!-- The dynamic part will be added by JS -->
             <table id="search-results-table">
                 <tr>
                     <th></th> <!-- add buttons -->
@@ -44,5 +51,47 @@
         </div>
     </div>
     <script src="js/script.js"></script>
+    <script>
+        // Function to update the username display and setup logout
+        function updateUserInfo() {
+            const usernameDisplay = document.getElementById('username-display');
+            const authButton = document.getElementById('auth-button');
+            const guestWarning = document.getElementById('guest-warning');
+            const storedUsername = localStorage.getItem('username');
+
+            if (storedUsername) {
+                usernameDisplay.textContent = `Welcome, ${storedUsername}`;
+                guestWarning.style.display = 'none'; // Hide warning for logged-in users
+                authButton.textContent = 'Log Out';
+                authButton.style.display = 'inline-block'; // Ensure button is visible
+                authButton.onclick = function() {
+                    localStorage.removeItem('username'); // Remove username from local storage
+                    window.location.href = '/login'; // Redirect to the login page
+                };
+            } else {
+                usernameDisplay.textContent = 'Welcome, Guest';
+                guestWarning.style.display = 'block'; // Show warning for non-members
+                authButton.textContent = 'Log In';
+                authButton.style.display = 'inline-block'; // Show button for guests
+                authButton.onclick = function() {
+                    window.location.href = '/login'; // Redirect to the login page
+                };
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('username'); // Remove username from local storage
+            // localStorage.removeItem('playlists'); // Optional: Remove the playlists from local storage
+            window.location.href = '/login'; // Redirect to the login page
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUserInfo();
+            const logoutButton = document.getElementById('logout-button');
+            if (logoutButton) {
+                logoutButton.addEventListener('click', logout);
+            }
+        });
+    </script>
 </body>
 </html>

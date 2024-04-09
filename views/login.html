@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="/styles/styles.css"> <!-- Make sure the path starts with a slash if it's from the root -->
+  <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
   <div class="login-container">
     <div class="login-card">
       <h2>Login</h2>
-      <form id="login-form" action="/login" method="POST">
+      <form id="login-form">
         <div class="input-group">
           <label for="username">Username</label>
           <input type="text" id="username" name="username" required>
@@ -20,11 +20,44 @@
         </div>
         <button type="submit" class="submit-btn">Log In</button>
       </form>
+      <div id="error-message" style="display: none; color: red;"></div>
       <div class="signup-text">
-        <p>Don't have an account? </p>
-        <a href="/signup">Sign Up</a><p> or <a href="/index.html">Log in as Guest</a></p>
+        <p>Don't have an account?</p> <a href="/signup">Sign Up</a> or <a href="/">Log in as Guest</a>
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+  
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.url) {
+          localStorage.setItem('username', username); // Save the username in localStorage
+          window.location.href = data.url; // Redirect to the main page
+        } else if (data.error) {
+          const errorDiv = document.getElementById('error-message');
+          errorDiv.textContent = data.error; // Show the error message
+          errorDiv.style.display = 'block';
+        }
+      })
+      .catch(error => {
+        const errorDiv = document.getElementById('error-message');
+        errorDiv.textContent = 'An error occurred during login.';
+        errorDiv.style.display = 'block';
+        console.error('Error:', error);
+      });
+    });
+  </script>
 </body>
 </html>

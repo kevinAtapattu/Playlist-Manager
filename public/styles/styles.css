@@ -289,8 +289,6 @@ body, html {
 .signup-text p,
 .signup-text a {
   color: #8a8a8a; /* This sets the text color to white */
-  /* If the "Username" and "Password" labels have a specific color,
-     replace #ffffff with the hex color code used there. */
 }
 
 .signup-text a {

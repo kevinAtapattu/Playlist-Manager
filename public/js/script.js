@@ -116,20 +116,42 @@ function addToPlaylist(trackName, artistName, artworkUrl) {
 }
 
 function savePlaylist() {
+  const username = localStorage.getItem('username');
+  if (!username) {
+    console.error('No user is currently logged in.');
+    return;
+  }
+
+  // Get the existing playlists object, or initialize a new one
+  let playlists = JSON.parse(localStorage.getItem('playlists')) || {};
   let playlist = [];
+
+  // Get all the songs from the current user's playlist and save them
   document.querySelectorAll('#playlist-table .playlist-row').forEach(row => {
     const trackName = row.cells[1].textContent;
     const artistName = row.cells[2].textContent;
     const artworkUrl = row.cells[3].querySelector('img').src;
     playlist.push({ trackName, artistName, artworkUrl });
   });
-  localStorage.setItem('playlist', JSON.stringify(playlist));
+
+  // Save the current user's playlist inside the playlists object
+  playlists[username] = playlist;
+  localStorage.setItem('playlists', JSON.stringify(playlists));
 }
 
 function loadPlaylist() {
-  const playlist = JSON.parse(localStorage.getItem('playlist'));
-  if (playlist) {
-    playlist.forEach(song => {
+  const username = localStorage.getItem('username');
+  if (!username) {
+    console.error('No user is currently logged in.');
+    return;
+  }
+
+  // Get the existing playlists object
+  let playlists = JSON.parse(localStorage.getItem('playlists')) || {};
+  
+  // Load the current user's playlist if it exists
+  if (playlists[username]) {
+    playlists[username].forEach(song => {
       addToPlaylist(song.trackName, song.artistName, song.artworkUrl);
     });
   }

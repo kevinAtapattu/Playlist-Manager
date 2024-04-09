@@ -4,11 +4,13 @@ Kevin Atapattu
 
 INSTALL INSTRUCTIONS:
 >npm install
+>npm install sqlite3
+>npm install express
+>npm install body-parser
+>npm install bcrypt
 
 LAUNCH INSTRUCTIONS:
 >node server.js
->npm install body-parser
-
 
 TESTING INSTRUCTIONS:
 http://localhost:3000/mytunes.html
